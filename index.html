@@ -3,890 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenClaw 上门安装服务 - AI 助手，即刻拥有</title>
-    <style>
-        :root {
-            --primary: #FF6B35;
-            --primary-dark: #E55A2B;
-            --secondary: #004E89;
-            --accent: #FFCB47;
-            --dark: #1A1A2E;
-            --light: #F8F9FA;
-            --gray: #6C757D;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo-icon {
-            font-size: 1.8rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-cta {
-            background: var(--primary);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .nav-cta:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 8rem 2rem 4rem;
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--dark) 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(255,107,53,0.3) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-content h1 span {
-            color: var(--accent);
-        }
-
-        .hero-content p {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255,107,53,0.4);
-        }
-
-        .btn-secondary {
-            background: rgba(255,255,255,0.1);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            border: 2px solid rgba(255,255,255,0.3);
-            transition: all 0.3s;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.2);
-        }
-
-        .hero-image {
-            position: relative;
-        }
-
-        .hero-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--accent);
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 6rem 2rem;
-            background: var(--light);
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .section-header p {
-            font-size: 1.1rem;
-            color: var(--gray);
-        }
-
-        .features-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .feature-card p {
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        /* How It Works */
-        .how-it-works {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .steps {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .step {
-            text-align: center;
-            position: relative;
-        }
-
-        .step:not(:last-child)::after {
-            content: '→';
-            position: absolute;
-            right: -1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2rem;
-            color: var(--primary);
-        }
-
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 800;
-            color: white;
-            margin: 0 auto 1.5rem;
-        }
-
-        .step h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .step p {
-            color: var(--gray);
-            font-size: 0.95rem;
-        }
-
-        /* Pricing */
-        .pricing {
-            padding: 6rem 2rem;
-            background: var(--light);
-        }
-
-        .pricing-cards {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .pricing-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pricing-card.featured {
-            border: 3px solid var(--primary);
-            transform: scale(1.05);
-        }
-
-        .pricing-card.featured::before {
-            content: '最受欢迎';
-            position: absolute;
-            top: 20px;
-            right: -35px;
-            background: var(--primary);
-            color: white;
-            padding: 5px 40px;
-            transform: rotate(45deg);
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .pricing-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .pricing-card .price {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin: 1.5rem 0;
-        }
-
-        .pricing-card .price span {
-            font-size: 1rem;
-            color: var(--gray);
-            font-weight: 400;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin: 2rem 0;
-            text-align: left;
-        }
-
-        .pricing-features li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--light);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-
-        .check {
-            color: #28a745;
-            font-weight: bold;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .testimonials-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .testimonial-card {
-            background: var(--light);
-            padding: 2rem;
-            border-radius: 20px;
-            border-left: 4px solid var(--primary);
-        }
-
-        .testimonial-card p {
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .testimonial-avatar {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-        }
-
-        .testimonial-info h4 {
-            font-weight: 600;
-        }
-
-        .testimonial-info span {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* CTA Section */
-        .cta {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            text-align: center;
-            color: white;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .cta p {
-            font-size: 1.25rem;
-            opacity: 0.95;
-            margin-bottom: 2rem;
-        }
-
-        .btn-white {
-            background: white;
-            color: var(--primary);
-            padding: 1rem 3rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.2rem;
-            display: inline-block;
-            transition: all 0.3s;
-        }
-
-        .btn-white:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 4rem 2rem 2rem;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h4 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-section a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.5);
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 968px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-stats {
-                justify-content: center;
-            }
-
-            .steps {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .step:not(:last-child)::after {
-                display: none;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .pricing-card.featured {
-                transform: none;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .steps {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .section-header h2 {
-                font-size: 1.8rem;
-            }
-
-            .cta h2 {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
+    <title>龙虾运行数据面板</title>
+    <meta
+        name="description"
+        content="龙虾运行数据面板，展示核心运营指标、节点健康、告警事件与版本发布节奏。"
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <span class="logo-icon">🦞</span>
-                OpenClaw
-            </a>
-            <ul class="nav-links">
-                <li><a href="#features">特点</a></li>
-                <li><a href="#how-it-works">流程</a></li>
-                <li><a href="#pricing">价格</a></li>
-                <li><a href="#testimonials">评价</a></li>
-            </ul>
-            <a href="#contact" class="nav-cta">立即预约</a>
-        </div>
-    </nav>
+    <div class="page-shell">
+        <header class="hero reveal">
+            <nav class="topbar">
+                <a class="brand" href="#overview" aria-label="龙虾运行数据面板">
+                    <span class="brand-mark">L</span>
+                    <span>
+                        <strong>龙虾运行数据面板</strong>
+                        <em id="metaVersion">版本加载中</em>
+                    </span>
+                </a>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1>OpenClaw <span>上门安装</span><br>AI 助手服务</h1>
-                <p>专业的 AI 助手部署服务，让您的企业拥有专属的智能助手。支持多渠道消息接入，安全隔离，7x24 小时在线。</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn-primary">
-                        免费预约 →
-                    </a>
-                    <a href="#features" class="btn-secondary">了解更多</a>
+                <div class="topbar-actions">
+                    <a class="topbar-link" href="#deploy">部署说明</a>
+                    <a class="topbar-link" href="https://github.com/gty198/openclaw-marketing" target="_blank" rel="noreferrer">GitHub</a>
+                    <button class="button button-ghost" id="refreshButton" type="button">刷新示例数据</button>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">成功部署</div>
+            </nav>
+
+            <div class="hero-grid" id="overview">
+                <section class="hero-copy">
+                    <p class="eyebrow">Live Operations Console</p>
+                    <h1>把龙虾业务运行状态，压缩成一个能直接汇报的静态面板。</h1>
+                    <p class="hero-text">
+                        页面基于本地 JSON 渲染，可直接发布到 GitHub Pages。后续要接真实接口时，只需要替换数据源，不需要重写展示层。
+                    </p>
+
+                    <div class="hero-pills">
+                        <span class="pill pill-live" id="metaStatus">RUNNING</span>
+                        <span class="pill" id="metaEnvironment">GitHub Pages</span>
+                        <span class="pill" id="metaSync">最近同步中</span>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number">99.9%</div>
-                        <div class="stat-label">服务可用性</div>
+
+                    <div class="hero-actions">
+                        <a class="button button-solid" href="#dashboard">查看面板</a>
+                        <a class="button button-outline" href="#deploy">部署到 GitHub</a>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number">24h</div>
-                        <div class="stat-label">快速响应</div>
+                </section>
+
+                <aside class="hero-panel">
+                    <div class="panel-label">运行快照</div>
+                    <div class="hero-highlight">
+                        <span>今日可用性</span>
+                        <strong id="heroUptime">99.98%</strong>
                     </div>
+
+                    <div class="hero-mini-grid">
+                        <article>
+                            <span>活跃节点</span>
+                            <strong id="heroNodes">14 / 15</strong>
+                        </article>
+                        <article>
+                            <span>P95 延迟</span>
+                            <strong id="heroLatency">246 ms</strong>
+                        </article>
+                        <article>
+                            <span>自动化成功率</span>
+                            <strong id="heroAutomation">99.2%</strong>
+                        </article>
+                        <article>
+                            <span>待处理告警</span>
+                            <strong id="heroAlerts">7</strong>
+                        </article>
+                    </div>
+
+                    <div class="hero-note" id="metaNote">
+                        面板正在读取默认样例数据。
+                    </div>
+                </aside>
+            </div>
+        </header>
+
+        <main class="dashboard" id="dashboard">
+            <section class="section-heading reveal">
+                <div>
+                    <p class="eyebrow">Executive Snapshot</p>
+                    <h2>核心指标</h2>
                 </div>
-            </div>
-            <div class="hero-image">
-                <div style="background: linear-gradient(135deg, #FF6B35 0%, #FFCB47 100%); border-radius: 20px; padding: 3rem; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.3);">
-                    <div style="font-size: 8rem; line-height: 1;">🦞</div>
-                    <div style="font-size: 1.5rem; font-weight: 700; margin-top: 1rem;">OpenClaw</div>
-                    <div style="opacity: 0.9;">AI Assistant</div>
-                </div>
-            </div>
-        </div>
-    </section>
+                <p class="section-copy">
+                    适合直接给运营、产品和技术团队共用，重点突出稳定性、吞吐量和处理效率。
+                </p>
+            </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="section-header">
-            <h2>为什么选择 OpenClaw？</h2>
-            <p>我们提供业界领先的 AI 助手部署解决方案，为您的业务赋能</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🚀</div>
-                <h3>快速部署</h3>
-                <p>专业团队上门安装，2 小时内完成部署，即刻启用 AI 助手能力，无需等待。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>安全隔离</h3>
-                <p>每个 AI 助手运行在独立的 Linux 容器中，数据完全隔离，确保企业信息安全。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">💬</div>
-                <h3>多渠道接入</h3>
-                <p>支持 WhatsApp、Telegram、微信、钉钉等多种消息平台，统一入口管理。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚙️</div>
-                <h3>高度定制</h3>
-                <p>根据您的业务需求量身定制，支持技能扩展，满足各种场景需求。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3>智能调度</h3>
-                <p>内置任务调度系统，支持定时任务、周期性任务，自动化处理日常事务。</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🛠️</div>
-                <h3>持续支持</h3>
-                <p>7x24 小时技术支持，远程协助解决问题，确保服务稳定运行。</p>
-            </div>
-        </div>
-    </section>
+            <section class="metrics-grid" id="metricsGrid" aria-label="核心指标列表"></section>
 
-    <!-- How It Works -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="section-header">
-            <h2>服务流程</h2>
-            <p>简单的四步流程，快速拥有您的 AI 助手</p>
-        </div>
-        <div class="steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h3>预约咨询</h3>
-                <p>填写需求表单，我们的专家团队会与您联系</p>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <h3>方案定制</h3>
-                <p>根据您的需求，定制最适合的解决方案</p>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <h3>上门部署</h3>
-                <p>专业工程师上门安装，现场调试</p>
-            </div>
-            <div class="step">
-                <div class="step-number">4</div>
-                <h3>培训交付</h3>
-                <p>提供使用培训，确保团队顺利上手</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing -->
-    <section class="pricing" id="pricing">
-        <div class="section-header">
-            <h2>服务套餐</h2>
-            <p>灵活的定价方案，满足不同规模企业的需求</p>
-        </div>
-        <div class="pricing-cards">
-            <div class="pricing-card">
-                <h3>基础版</h3>
-                <div class="price">¥2,999<span>/次</span></div>
-                <ul class="pricing-features">
-                    <li><span class="check">✓</span> 上门安装服务</li>
-                    <li><span class="check">✓</span> 单个消息渠道接入</li>
-                    <li><span class="check">✓</span> 基础技能培训</li>
-                    <li><span class="check">✓</span> 7 天技术支持</li>
-                    <li><span class="check">✓</span> 标准部署配置</li>
-                </ul>
-                <a href="#contact" class="btn-primary">选择此套餐</a>
-            </div>
-            <div class="pricing-card featured">
-                <h3>专业版</h3>
-                <div class="price">¥5,999<span>/次</span></div>
-                <ul class="pricing-features">
-                    <li><span class="check">✓</span> 上门安装服务</li>
-                    <li><span class="check">✓</span> 3 个消息渠道接入</li>
-                    <li><span class="check">✓</span> 高级技能培训</li>
-                    <li><span class="check">✓</span> 30 天技术支持</li>
-                    <li><span class="check">✓</span> 定制化配置</li>
-                    <li><span class="check">✓</span> 任务调度系统</li>
-                </ul>
-                <a href="#contact" class="btn-primary">选择此套餐</a>
-            </div>
-            <div class="pricing-card">
-                <h3>企业版</h3>
-                <div class="price">¥12,999<span>/次</span></div>
-                <ul class="pricing-features">
-                    <li><span class="check">✓</span> 上门安装服务</li>
-                    <li><span class="check">✓</span> 无限消息渠道</li>
-                    <li><span class="check">✓</span> 全员培训</li>
-                    <li><span class="check">✓</span> 90 天技术支持</li>
-                    <li><span class="check">✓</span> 完全定制开发</li>
-                    <li><span class="check">✓</span> Agent Swarm 支持</li>
-                    <li><span class="check">✓</span> 专属客户经理</li>
-                </ul>
-                <a href="#contact" class="btn-primary">选择此套餐</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials" id="testimonials">
-        <div class="section-header">
-            <h2>客户评价</h2>
-            <p>听听使用过我们服务的客户怎么说</p>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <p>"OpenClaw 的上门安装服务非常专业，工程师 2 小时就完成了部署。现在我们的客服团队效率提升了 3 倍！"</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">张</div>
-                    <div class="testimonial-info">
-                        <h4>张先生</h4>
-                        <span>某电商公司 CEO</span>
+            <section class="content-grid">
+                <article class="card chart-card reveal">
+                    <div class="card-header">
+                        <div>
+                            <p class="eyebrow">7 Day Throughput</p>
+                            <h3>请求趋势</h3>
+                        </div>
+                        <div class="card-meta" id="trendSummary">数据加载中</div>
                     </div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <p>"多渠道整合功能太实用了，我们可以在一个平台上管理所有客户的消息。定制化开发也完全满足了我们的业务需求。"</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">李</div>
-                    <div class="testimonial-info">
-                        <h4>李女士</h4>
-                        <span>某科技公司运营总监</span>
+
+                    <svg id="trendChart" class="trend-chart" viewBox="0 0 760 320" role="img" aria-label="请求趋势图"></svg>
+                    <div class="axis-labels" id="trendLabels"></div>
+                </article>
+
+                <article class="card reveal">
+                    <div class="card-header">
+                        <div>
+                            <p class="eyebrow">Workflow Funnel</p>
+                            <h3>处理漏斗</h3>
+                        </div>
+                        <div class="card-meta">端到端转化率</div>
                     </div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <p>"技术支持团队响应非常及时，遇到问题基本都是 1 小时内解决。对于技术团队来说，这个服务性价比非常高。"</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar">王</div>
-                    <div class="testimonial-info">
-                        <h4>王先生</h4>
-                        <span>某创业公司 CTO</span>
+
+                    <div class="pipeline" id="pipelineList"></div>
+                </article>
+
+                <article class="card reveal">
+                    <div class="card-header">
+                        <div>
+                            <p class="eyebrow">Node Matrix</p>
+                            <h3>节点健康</h3>
+                        </div>
+                        <div class="card-meta" id="nodeSummary">集群检查中</div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="contact">
-        <h2>准备好开始了吗？</h2>
-        <p>立即预约，享受专业 AI 助手部署服务</p>
-        <a href="mailto:contact@openclaw.com" class="btn-white">免费预约咨询</a>
-    </section>
+                    <div class="nodes-grid" id="nodesGrid"></div>
+                </article>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4>OpenClaw</h4>
-                <p style="opacity: 0.7; line-height: 1.8;">专业的 AI 助手上门安装服务，让智能触手可及。</p>
-            </div>
-            <div class="footer-section">
-                <h4>服务</h4>
-                <ul>
-                    <li><a href="#features">功能特点</a></li>
-                    <li><a href="#pricing">价格套餐</a></li>
-                    <li><a href="#how-it-works">服务流程</a></li>
-                    <li><a href="#contact">联系我们</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>支持</h4>
-                <ul>
-                    <li><a href="#">文档中心</a></li>
-                    <li><a href="#">常见问题</a></li>
-                    <li><a href="#">技术支持</a></li>
-                    <li><a href="#">服务状态</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>联系我们</h4>
-                <ul>
-                    <li><a href="mailto:contact@openclaw.com">contact@openclaw.com</a></li>
-                    <li><a href="tel:+86123456789">400-123-4567</a></li>
-                    <li><a href="#">微信公众号</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 OpenClaw. 保留所有权利.</p>
-        </div>
-    </footer>
+                <article class="card reveal">
+                    <div class="card-header">
+                        <div>
+                            <p class="eyebrow">Alert Queue</p>
+                            <h3>告警分布</h3>
+                        </div>
+                        <div class="card-meta">按严重级别聚合</div>
+                    </div>
 
-    <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
+                    <div class="alert-bars" id="alertsList"></div>
+                </article>
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.15)';
-            } else {
-                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            }
-        });
-    </script>
+                <article class="card reveal">
+                    <div class="card-header">
+                        <div>
+                            <p class="eyebrow">Event Stream</p>
+                            <h3>运行事件流</h3>
+                        </div>
+                        <div class="card-meta">最近 6 条</div>
+                    </div>
+
+                    <div class="timeline" id="timelineList"></div>
+                </article>
+
+                <article class="card reveal" id="deploy">
+                    <div class="card-header">
+                        <div>
+                            <p class="eyebrow">GitHub Pages</p>
+                            <h3>部署信息</h3>
+                        </div>
+                        <div class="card-meta">静态托管</div>
+                    </div>
+
+                    <div class="deploy-list" id="releaseList"></div>
+
+                    <div class="deploy-panel">
+                        <p>当前仓库已经包含自动发布工作流，推送到 <code>main</code> 后会自动部署。</p>
+                        <p>如果你要接入真实指标，优先替换 <code>data/lobster-metrics.json</code> 或改成你的 API 地址。</p>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <footer class="footer reveal">
+            <p>龙虾运行数据面板 · Static dashboard for GitHub Pages</p>
+            <p>数据源：<code>data/lobster-metrics.json</code> · 渲染方式：纯前端，无构建依赖</p>
+        </footer>
+    </div>
+
+    <script type="module" src="./app.js"></script>
 </body>
 </html>

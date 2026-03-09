@@ -1,0 +1,203 @@
+{
+  "meta": {
+    "version": "Release v2.6.3",
+    "status": "RUNNING",
+    "environment": "GitHub Pages Demo",
+    "lastSync": "2026-03-09 10:28 CST",
+    "note": "当前展示为静态样例数据，适合先上线演示，再逐步替换为真实接口。"
+  },
+  "metrics": {
+    "hero": {
+      "uptime": "99.98%",
+      "nodes": "14 / 15",
+      "latency": "246 ms",
+      "automationSuccess": "99.2%",
+      "pendingAlerts": "7"
+    },
+    "items": [
+      {
+        "label": "24h 请求量",
+        "value": "18,420",
+        "delta": "+12.4%",
+        "direction": "up",
+        "description": "相比昨日增加 2,034 次请求，增长主要来自自动化批量任务。"
+      },
+      {
+        "label": "自动化成功率",
+        "value": "99.2",
+        "unit": "%",
+        "delta": "+0.8%",
+        "direction": "up",
+        "description": "过去 24 小时共执行 2,318 条自动化链路，其中失败 19 次。"
+      },
+      {
+        "label": "P95 延迟",
+        "value": "246",
+        "unit": " ms",
+        "delta": "-18 ms",
+        "direction": "up",
+        "description": "高峰时段路由优化后，尾延迟下降，用户体感明显更稳。"
+      },
+      {
+        "label": "运营成本",
+        "value": "0.68",
+        "unit": " 元/千次",
+        "delta": "-6.1%",
+        "direction": "up",
+        "description": "通过节点分流和缓存命中，单位请求成本进一步压缩。"
+      },
+      {
+        "label": "活跃项目",
+        "value": "38",
+        "delta": "+5",
+        "direction": "up",
+        "description": "本周新增 5 个付费项目使用龙虾工作流进行任务调度。"
+      },
+      {
+        "label": "待处理告警",
+        "value": "7",
+        "delta": "-3",
+        "direction": "up",
+        "description": "告警积压已经低于团队阈值，剩余项目集中在弱网节点修复。"
+      }
+    ]
+  },
+  "trend": {
+    "labels": ["03-03", "03-04", "03-05", "03-06", "03-07", "03-08", "03-09"],
+    "values": [12840, 13620, 14980, 15720, 16850, 17510, 18420]
+  },
+  "pipeline": [
+    {
+      "label": "任务接入",
+      "value": "18,420",
+      "rate": 100,
+      "description": "全部进入统一入口，含 API、批处理和手工触发任务。"
+    },
+    {
+      "label": "智能分流",
+      "value": "17,680",
+      "rate": 96,
+      "description": "路由成功命中目标节点，少量请求因鉴权失败被拦截。"
+    },
+    {
+      "label": "任务执行",
+      "value": "17,214",
+      "rate": 93,
+      "description": "执行层完成主体处理，主要损耗来自超时重试和限流保护。"
+    },
+    {
+      "label": "结果回传",
+      "value": "16,935",
+      "rate": 92,
+      "description": "最终回写成功，端到端完成率保持在健康区间。"
+    }
+  ],
+  "nodes": [
+    {
+      "name": "Lobster-SH-01",
+      "status": "ok",
+      "statusLabel": "健康",
+      "region": "上海",
+      "latency": "182 ms",
+      "cpu": "47%",
+      "memory": "63%",
+      "queue": "12"
+    },
+    {
+      "name": "Lobster-SG-02",
+      "status": "ok",
+      "statusLabel": "健康",
+      "region": "新加坡",
+      "latency": "214 ms",
+      "cpu": "54%",
+      "memory": "59%",
+      "queue": "8"
+    },
+    {
+      "name": "Lobster-US-03",
+      "status": "warn",
+      "statusLabel": "观察中",
+      "region": "弗吉尼亚",
+      "latency": "298 ms",
+      "cpu": "68%",
+      "memory": "71%",
+      "queue": "21"
+    },
+    {
+      "name": "Lobster-HK-04",
+      "status": "error",
+      "statusLabel": "修复中",
+      "region": "香港",
+      "latency": "531 ms",
+      "cpu": "83%",
+      "memory": "88%",
+      "queue": "34"
+    }
+  ],
+  "alerts": [
+    {
+      "label": "高优先级重试",
+      "value": 7,
+      "level": "critical"
+    },
+    {
+      "label": "流量突增预警",
+      "value": 4,
+      "level": "warning"
+    },
+    {
+      "label": "成本偏移提醒",
+      "value": 2,
+      "level": "info"
+    }
+  ],
+  "timeline": [
+    {
+      "time": "10:20",
+      "title": "香港节点进入限流保护",
+      "description": "高峰流量触发保护阈值，自动切换 30% 请求到新加坡集群。"
+    },
+    {
+      "time": "09:45",
+      "title": "自动化回写批次完成",
+      "description": "晨间数据回写任务全部完成，累计处理 4,120 条运营记录。"
+    },
+    {
+      "time": "09:10",
+      "title": "缓存命中率提升",
+      "description": "热路径缓存策略上线后，公共查询命中率从 61% 提高到 76%。"
+    },
+    {
+      "time": "08:30",
+      "title": "版本 v2.6.3 发布",
+      "description": "新增队列可视化与故障节点标识，面板阅读速度明显提升。"
+    },
+    {
+      "time": "07:55",
+      "title": "成本阈值恢复正常",
+      "description": "由于昨夜批处理结束，单位请求成本回落到预算线内。"
+    },
+    {
+      "time": "07:20",
+      "title": "上海主节点完成巡检",
+      "description": "系统级自检通过，CPU 和内存维持在安全区间。"
+    }
+  ],
+  "releases": [
+    {
+      "version": "v2.6.3",
+      "window": "今日 08:30",
+      "focus": "补齐节点健康态势、时间线和 GitHub Pages 纯静态部署能力。"
+    },
+    {
+      "version": "v2.7.0 计划",
+      "window": "本周五",
+      "focus": "接入真实 API 指标、增加导出 CSV 和项目筛选视图。"
+    },
+    {
+      "version": "v2.7.1 预研",
+      "window": "下周",
+      "focus": "补告警订阅和异常阈值配置，支持运维自定义规则。"
+    }
+  ]
+}
